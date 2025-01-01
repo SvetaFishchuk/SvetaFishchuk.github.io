@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Classes</title>
+<style>
+  .scrollable-table {
+        overflow-x: auto; /* Включаем горизонтальную прокрутку */
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #1142AA;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #e1f5fe;
+  }
+  td:first-child {
+    font-weight: bold;
+  }
+
+/* Link styles */
+  .link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background-color: #015965; /* Blue background color */
+      transition: background-color 0.3s, color 0.3s;
+      margin-top: 20px;
+  }
+
+  .link:hover {
+      background-color: #f6ce96;
+      color: #333;
+  }
+</style>
+</head>
+<body>
+
+<h1>Python Classes</h1>
+
+<table>
+  <tr>
+    <th>Понятий</th>
+    <th>Синтаксис с пояснением</th>
+    <th>Пример</th>
+    <th>Юзкейсы</th>
+  </tr>
+  
+  <tr>
+    <td>Класс</td>
+    <td>
+      <code>
+        class ClassName:<br>
+        &nbsp;&nbsp;# тело класса<br>
+        &nbsp;&nbsp;def method(self):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# код метода
+      </code>
+      <p><strong>Пояснение:</strong> Используйте <code>class</code> для создания класса, который может содержать методы и атрибуты.</p>
+    </td>
+    <td>
+      <pre><code>class Person:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+  def greet(self):<br>
+    return f"Hello, {self.name}!"<br>
+p = Person("Alex")<br>
+print(p.greet())</code></pre>
+    </td>
+    <td>
+      <p>Используется для создания объектов с общими свойствами и методами.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Переменные класса</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> переменные класса создаются внутри класса, но вне методов.</li>
+        <li><strong>Как обращаться:</strong> обращение через имя класса или экземпляра (если переменная не приватная).</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class Car:<br>
+  wheels = 4<br>
+  def __init__(self, model):<br>
+    self.model = model<br>
+car = Car("Tesla")<br>
+print(car.wheels)  # 4<br>
+print(Car.wheels)  # 4</code></pre>
+    </td>
+    <td>
+      <p>Полезно для хранения общих для всех объектов значений (например, количество колес для всех машин).</p>
+    </td>
+</tr>
+<tr>
+    <td>Приватные переменные класса</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> начинаются с двойного подчеркивания (`__`), создаются внутри класса.</li>
+        <li><strong>Как обращаться:</strong> доступны только через name mangling (`_ClassName__var`).</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class BankAccount:<br>
+  __rate = 1.02<br>
+  def __init__(self, balance):<br>
+    self.balance = balance<br>
+  def apply_rate(self):<br>
+    self.balance *= BankAccount.__rate<br>
+account = BankAccount(100)<br>
+account.apply_rate()<br>
+print(account.balance)  # 102<br>
+# print(account.__rate)  # Ошибка!<br>
+print(account._BankAccount__rate)  # 1.02</code></pre>
+    </td>
+    <td>
+      <p>Используются для сокрытия данных или конфиденциальных настроек класса.</p>
+    </td>
+</tr>
+<tr>
+    <td>Переменные экземпляра</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> присваиваются через `self` в методах класса (обычно в `__init__`).</li>
+        <li><strong>Как обращаться:</strong> доступны только через экземпляры.</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class Person:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+person = Person("Alice")<br>
+print(person.name)  # Alice<br>
+# print(Person.name)  # Ошибка!</code></pre>
+    </td>
+    <td>
+      <p>Содержат уникальные данные, специфичные для каждого объекта.</p>
+    </td>
+</tr>
+<tr>
+    <td>Локальные переменные</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> объявляются внутри методов и существуют только в рамках вызова метода.</li>
+        <li><strong>Как обращаться:</strong> доступны только в пределах метода, где они объявлены.</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class Math:<br>
+  def add(self, a, b):<br>
+    result = a + b  # Локальная переменная<br>
+    return result<br>
+calc = Math()<br>
+print(calc.add(3, 5))  # 8<br>
+# print(calc.result)  # Ошибка!</code></pre>
+    </td>
+    <td>
+      <p>Хороши для временного хранения значений в процессе работы метода.</p>
+    </td>
+</tr>
+<tr>
+    <td>Глобальные переменные</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> определяются вне всех классов и функций.</li>
+        <li><strong>Как обращаться:</strong> доступны везде, но изменение из методов требует ключевого слова <code>global</code>.</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>total = 0  # Глобальная переменная<br>
+class Counter:<br>
+  def increment(self):<br>
+    global total<br>
+    total += 1<br>
+counter = Counter()<br>
+counter.increment()<br>
+print(total)  # 1</code></pre>
+    </td>
+    <td>
+      <p>Используются для хранения данных, общих для всего кода.</p>
+    </td>
+</tr>
+<tr>
+    <td>Переменные класса с property</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> через декораторы <code>@property</code> и <code>@classmethod</code>.</li>
+        <li><strong>Как обращаться:</strong> через имя класса или экземпляра, как с обычным атрибутом.</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class Circle:<br>
+  _pi = 3.14<br>
+  @property<br>
+  def pi(cls):<br>
+    return cls._pi<br>
+print(Circle.pi)  # 3.14</code></pre>
+    </td>
+    <td>
+      <p>Обеспечивают контроль доступа и добавление логики к статическим данным.</p>
+    </td>
+</tr>
+
+
+  <tr>
+    <td>Методы класса</td>
+    <td>
+      <ul>
+        <li><strong>Как задавать:</strong> методы объявляются внутри класса с первым параметром <code>self</code>, который ссылается на экземпляр объекта.</li>
+        <li><strong>Как обращаться:</strong> можно вызывать через экземпляр или через класс (для методов, которые используют <code>@classmethod</code> или <code>@staticmethod</code>).</li>
+      </ul>
+    </td>
+    <td>
+      <pre><code>class Dog:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+  def bark(self):<br>
+    return f"{self.name} says woof!"<br>
+d = Dog("Rex")<br>
+print(d.bark())</code></pre>
+    </td>
+    <td>
+      <p>Для инкапсуляции поведения, связанного с экземпляром объекта, например, для обработки его состояния.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>classmethod</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        class ClassName:<br>
+        &nbsp;&nbsp;@classmethod<br>
+        &nbsp;&nbsp;def method(cls, ...):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# код метода
+      </code>
+      <p><strong>Пояснение:</strong> <code>@classmethod</code> используется для методов, которые принимают первым аргументом сам класс <code>cls</code>, а не экземпляр.</p>
+    </td>
+    <td>
+      <pre><code>class Dog:<br>
+  @classmethod<br>
+  def animal_kingdom(cls):<br>
+    return "Dogs belong to the animal kingdom"<br>
+print(Dog.animal_kingdom())</code></pre>
+    </td>
+    <td>
+        <pre><code><p>Когда метод должен работать с классом, а не с экземплярами, например, для создания методов фабрик.
+        class Person:
+    population = 0
+
+    def __init__(self, name):
+        self.name = name
+        Person.population += 1
+
+    @classmethod
+    def how_many(cls):
+        return f"There are {cls.population} people."
+
+person1 = Person("Alice")
+person2 = Person("Bob")
+print(Person.how_many())  # Выведет: There are 2 people.
+
+</code></p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>staticmethod</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        class ClassName:<br>
+        &nbsp;&nbsp;@staticmethod<br>
+        &nbsp;&nbsp;def method(...):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# код метода
+      </code>
+      <p><strong>Пояснение:</strong> <code>@staticmethod</code> используется для создания методов, которые не зависят от состояния экземпляра или класса.</p>
+    </td>
+    <td>
+      <pre><code>class Calculator:<br>
+  @staticmethod<br>
+  def add(x, y):<br>
+    return x + y<br>
+print(Calculator.add(3, 4))</code></pre>
+    </td>
+    <td>
+      <p>Когда метод не должен зависеть от состояния объекта или класса, например, для математических операций.
+        <pre><code>class MathOperations:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+result = MathOperations.add(3, 5)
+print(result)  # Выведет: 8</code>
+
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>__init__</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        def __init__(self, ...):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# код инициализации объекта
+      </code>
+      <p><strong>Пояснение:</strong> Метод инициализации вызывается при создании нового объекта класса и используется для установки начальных значений атрибутов объекта.</p>
+    </td>
+    <td>
+      <pre><code>class Person:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+p = Person("Alice")<br>
+print(p.name)  # Выведет: Alice</code></pre>
+    </td>
+    <td>
+      <p>Для задания начальных значений атрибутов объекта при его создании.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>__str__</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        def __str__(self):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return "String representation of object"
+      </code>
+      <p><strong>Пояснение:</strong> Метод <code>__str__</code> вызывается при попытке преобразования объекта в строку, например, при использовании <code>print</code>.</p>
+    </td>
+    <td>
+      <pre><code>class Person:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+  def __str__(self):<br>
+    return f"Person named {self.name}"<br>
+p = Person("Alice")<br>
+print(p)  # Выведет: Person named Alice</code></pre>
+    </td>
+    <td>
+      <p>Для удобного отображения информации о объекте при его выводе.</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>__call__</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        def __call__(self, ...):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# код, выполняющийся при вызове объекта
+      </code>
+      <p><strong>Пример на сравнение:</strong> </p>
+      <pre><code>  class Cat:
+    def __init__(self, age):
+        self.age = age  # Аргумент для __init__
+
+    def __call__(self, weight):
+        return f"Cat is {self.age} years old and weighs {weight} kg"  # Аргумент для __call__
+
+    def grow(self, years):
+        return f"Cat will be {self.age + years} years old"  # Аргумент для метода
+
+cat = Cat(2)           # Аргумент 2 → в __init__
+print(cat(4))          # Аргумент 4 → в __call__, выведет: Cat is 2 years old and weighs 4 kg
+print(cat.grow(3))     # Аргумент 3 → в grow(), выведет: Cat will be 5 years old
+</code></pre>
+      <p><strong>Пояснение:</strong> Метод <code>__call__</code> позволяет экземплярам класса вести себя как функции.</p>
+    </td>
+    <td>
+      <pre><code>class Adder:<br>
+  def __init__(self, x):<br>
+    self.x = x<br>
+  def __call__(self, y):<br>
+    return self.x + y<br>
+add5 = Adder(5)<br>
+print(add5(3))  # Выведет: 8</code></pre>
+    </td>
+    <td>
+      <p>Когда нужно, чтобы объект класса вел себя как функция.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>__class__</td>
+    <td>
+      <p><strong>Синтаксис:</strong></p>
+      <code>
+        объект.__class__
+      </code>
+      <p><strong>Пояснение:</strong> Атрибут <code>__class__</code> возвращает класс объекта. Используется для определения или проверки типа объекта во время выполнения.</p>
+    </td>
+    <td>
+      <pre><code>class A:<br>
+  pass<br>
+a = A()<br>
+print(a.__class__)  # Вывод: <class '__main__.A'><br>
+      </code></pre>
+      <pre><code># Пример использования:<br>
+class B:<br>
+  def show_class(self):<br>
+    return f"This object is an instance of {self.__class__}"<br>
+obj = B()<br>
+print(obj.show_class())  # Вывод: This object is an instance of <class '__main__.B'>
+      </code></pre>
+    </td>
+    <td>
+      <p>Используется для:</p>
+      <ul>
+        <li>Проверки типа объекта во время выполнения (<code>isinstance</code>).</li>
+        <li>Работы с динамическим созданием объектов и метапрограммированием.</li>
+      </ul>
+    </td>
+</tr>
+
+  <tr>
+    <td>Наследование</td>
+    <td>
+      <ul>
+        <li><strong>Простое наследование:</strong> класс-наследник наследует только от одного родительского класса.</li>
+        <li><strong>Множественное наследование:</strong> класс-наследник наследует от нескольких родительских классов.</li>
+        <li><strong>Синтаксис:</strong> класс-наследник указывается в скобках после родительского класса (или классов).</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Простое наследование:</strong>
+      <pre><code>class Animal:<br>
+      def speak(self):<br>
+          return "Animal speaks"<br><br>
+      class Dog(Animal):<br>
+          def speak(self):<br>
+              return "Woof"<br><br>
+      d = Dog()<br>
+      print(d.speak())  # Выведет: Woof</code></pre>
+  
+      <strong>Множественное наследование:</strong>
+      <pre><code>class Animal:<br>
+      def speak(self):<br>
+          return "Animal speaks"<br><br>
+      class Swimmer:<br>
+      def swim(self):<br>
+          return "I can swim!"<br><br>
+      class Dolphin(Animal, Swimmer):<br>
+      def speak(self):<br>
+          return "Click"<br><br>
+      d = Dolphin()<br>
+      print(d.speak())  # Выведет: Click<br>
+      print(d.swim())  # Выведет: I can swim!</code></pre>
+    </td>
+    <td>
+      <p><strong>Когда использовать:</strong> Наследование полезно для повторного использования кода и расширения функциональности классов.</p>
+      <p><strong>Простое наследование:</strong> используйте, если дочерний класс должен наследовать поведение одного родительского класса, возможно, переопределяя его.</p>
+      <p><strong>Множественное наследование:</strong> используйте, если дочерний класс должен наследовать поведение сразу нескольких классов. Будьте осторожны с возможными конфликтами атрибутов и методов.</p>
+    </td>
+  </tr>
+  
+</table>
+
+<a href="index.html" class="link">Go Back to Home</a>
+
+</body>
+</html>
