@@ -20,7 +20,7 @@
         }
 
         #newYearMessage {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: bold;
             opacity: 0;
             z-index: 4;
@@ -35,6 +35,7 @@
             transition: opacity 1s ease-in-out;
             animation: text-glow 3s infinite alternate;
         }
+
         @keyframes text-glow {
             from {
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
@@ -49,6 +50,7 @@
                              0 0 60px rgba(255, 255, 255, 0.6);
             }
         }
+
 
         /* Открытка на весь экран */
         .card {
@@ -204,7 +206,8 @@
     <div class="snowball"></div>
     <div class="snowflakes"></div>
     <div class="snow-texture"></div>
-    <div id="newYearMessage">С Новым Годом!</div>
+    <div id="newYearMessage">Happy New Year!.. <br>To Artyom, my dear teacher, beloved and family.</br> </div>
+
     <script>
         // Скрываем сообщение по умолчанию
         document.getElementById('newYearMessage').style.opacity = '0';
@@ -214,6 +217,12 @@
             const message = document.getElementById('newYearMessage');
             message.style.opacity = '1';
         }, 3000);
+
+        setTimeout(() => {
+            const subMessage = document.getElementById('subMessage');
+            subMessage.style.opacity = '1';
+        }, 3500); // Появление спустя 3.5 секунды
+
     </script>
 
 
