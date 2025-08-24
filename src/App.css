@@ -1,0 +1,361 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+h1, h2, p {
+  margin: 0 0 20px 0; /* сверху 0, снизу 16px */
+  color: #444c56; /* глубокий тёмно-серый */
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8); /* мягкая жемчужная подсветка */
+}
+
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #444c56;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Анимация перелива */
+@keyframes metallicShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Общий фон для всего сайта */
+.App-home {
+  min-height: 100vh;
+  background: linear-gradient(135deg,
+    #f5f7fa,   /* светло-серый почти белый */
+    #e3edf7,   /* голубовато-перламутровый */
+    #fdf6f0,   /* нежно-розовый оттенок */
+    #d7dee9,   /* серебристо-серый */
+    #f1f5f9    /* холодный белый */
+  );
+  background-size: 400% 400%;
+  animation: metallicShine 32s ease infinite;
+  font-family: Arial, sans-serif;
+  color: black;
+  text-align: center;
+  padding-top: 40px; /* отступ сверху */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.App-header {
+  background: linear-gradient(135deg,
+    #f5f7fa,   /* светло-серый почти белый */
+    #e3edf7,   /* голубовато-перламутровый */
+    #fdf6f0,   /* нежно-розовый оттенок */
+    #d7dee9,   /* серебристо-серый */
+    #f1f5f9    /* холодный белый */
+  );
+  background-size: 200% 200%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  padding-top: 40px;  /* отступ сверху */
+  padding-bottom: 10px;
+  color: black;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;     /* вертикальная раскладка */
+  justify-content: top;    /* центрируем по вертикали */
+  align-items: center;        /* центрируем по горизонтали */
+  padding: 30px;
+  box-sizing: border-box;
+
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.App-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50; /* глубокий тёмно-серый */
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8); /* мягкая жемчужная подсветка */
+}
+
+.App-content p, 
+.App-content li {
+  font-size: 17.6px;
+  line-height: 1.6;
+  color: #444c56; /* стальной серый для основного текста */
+  text-align: justify;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;      /* позволяет переносить кнопки */
+  justify-content: center; /* центрируем по горизонтали */
+  gap: 10px;            /* расстояние между кнопками */
+}
+
+nav a {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px; /* пилюля */
+  background: linear-gradient(145deg, #f8f9fa, #d3e2ed); /* pearl → blue */
+  color: #2c3e50; /* глубокий серо-стальной текст */
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+nav a:hover {
+  background: linear-gradient(145deg, #d3e2ed, #f8f9fa); /* переворот градиента */
+  color: #6c7a89; /* стальной серый при ховере */
+  transform: translateY(-2px); /* лёгкий подъём */
+}
+
+
+/* Навигация только для Home */
+.home-nav {
+  display: flex;
+  flex-direction: column; /* в столбик */
+  align-items: center;    /* по центру */
+  gap: 15px;              /* расстояние между кнопками */
+  margin-top: 30px;
+}
+
+.home-nav a {
+  margin: 0;              /* убираем горизонтальные отступы */
+  width: 200px;           /* можно зафиксировать ширину */
+  text-align: center;
+}
+
+/* Контейнер портфолио */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px; /* расстояние между секциями */
+}
+
+/* Каждая секция */
+.page-section {
+  max-width: 800px;
+  width: 100%;
+  padding: 30px;
+  background: #f8f9fa; /* светлый фон */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Вариант для "альтернативных" секций */
+.page-section.alt {
+  background: #eaf2f7;
+}
+
+/* Заголовки */
+.page-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.page-section p {
+  font-size: 17.6px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Карточки опыта */
+.card {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-left: 4px solid #3a5268;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Блок с проектами под скиллом */
+.project-links {
+  margin-top: 1rem;
+  padding: 15px 20px;
+  background: #f8f9fa; /* тот же фон, что у .page-section */
+  border-left: 3px solid #90a4ae; /* стальной акцент */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  animation: fadeIn 0.4s ease; /* лёгкое появление */
+}
+
+.project-links p {
+  margin-bottom: 0.75rem;
+  font-size: 17.6px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.project-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Кнопки-ссылки */
+.link-button {
+  background: #eaf2f7;
+  border: 1px solid #c5d2dc;
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+  width: 100%;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+.link-button:hover {
+  background: #c5d2dc;
+  color: #2c3e50;
+  transform: translateX(4px); /* лёгкое движение */
+}
+
+.link-button:active {
+  transform: translateX(0);
+}
+
+/* анимация появления */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Грид для навыков */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.skills-grid span {
+  background: #d3e2ed;
+  padding: 10px 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  color: #2c3e50;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+/* Кнопка */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #cfd8dc, #90a4ae);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #90a4ae, #546e7a);
+  transform: translateY(-2px);
+}
+
+/* Контейнер для бейджей */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Общие стили для всех бейджей */
+.tech-badges span,
+.tech-badges button {
+  background: #eaf2f7;
+  border: 1px solid #c5d2dc;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin: 5px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+/* Специфика span */
+.tech-badges span {
+  font-weight: 500;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.7);
+}
+
+/* Специфика button */
+.tech-badges button {
+  cursor: pointer;
+  padding: 6px 14px; /* кнопки чуть шире */
+}
+
+/* Hover только для кнопок */
+.tech-badges button:hover {
+  background: #c5d2dc;
+  color: #2c3e50;
+}
+
+.card.highlight {
+  background: #fff9e6; /* мягкая подсветка */
+  transition: background 0.5s ease;
+}
+
+/* Грид для дополнительных скиллов */
+.tech-support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  column-count: 2;         /* 2 колонки */
+  column-gap: 20px;
+}
+
+.tech-support h3 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+.tech-card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  break-inside: avoid;     /* чтобы не ломались */
+}
+
